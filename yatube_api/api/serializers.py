@@ -9,16 +9,19 @@ class PostSerializer(serializers.ModelSerializer):
         queryset=Group.objects.all(),
         required=False
     )
+    author = serializers.PrimaryKeyRelatedField(
+        read_only=True, default=serializers.CurrentUserDefault()
+    )
 
     class Meta:
         model = Post
         fields = (
+            'id',
             'text',
             'author',
             'image',
             'group'
         )
-        read_only_fileds = ('author',)
 
 
 class GroupSerializer(serializers.ModelSerializer):
