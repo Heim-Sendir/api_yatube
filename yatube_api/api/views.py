@@ -3,7 +3,22 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import mixins
 
-from .models import Cat, Owner
-from .serializers import CatSerializer, OwnerSerializer, CatListSerializer
+from posts.models import Post, Group, Comment
+from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 
 # Create your views here.
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
