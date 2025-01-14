@@ -1,7 +1,5 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
-from rest_framework.viewsets import GenericViewSet
 
 
 from posts.models import Post, Group
@@ -19,7 +17,7 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class GroupRetrieveViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
+class GroupRetrieveViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
